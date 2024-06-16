@@ -7,6 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 import os
 
+
 class FileHandler:
     def __init__(self, download_dir):
         self.download_dir = download_dir
