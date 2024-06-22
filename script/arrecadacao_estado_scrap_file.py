@@ -8,7 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 import os
 
 
-class FileHandler:
+class FileHandlerArrecadacaoEstado:
     def __init__(self, download_dir):
         self.download_dir = download_dir
         self.chrome_options = self.define_options()
