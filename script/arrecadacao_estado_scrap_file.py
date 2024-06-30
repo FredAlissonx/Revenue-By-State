@@ -14,6 +14,7 @@ class FileHandlerArrecadacaoEstado:
         self.chrome_options = self.define_options()
         self.driver = None
 
+
     def define_options(self) -> Options:
         chrome_options = Options()
         chrome_options.add_argument("--headless=new")
@@ -31,7 +32,6 @@ class FileHandlerArrecadacaoEstado:
         
         self.driver = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
         self.driver.implicitly_wait(10)
-        
     
     def download_file(self):
         try:
