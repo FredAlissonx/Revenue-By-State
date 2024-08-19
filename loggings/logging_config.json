@@ -1,0 +1,54 @@
+{
+    "version": 1,
+    "disable_existing_loggers": false,
+    "formatters": {
+        "standard": {
+            "format": "%(asctime)s - %(levelname)s - %(message)s"
+        }
+    },
+    "handlers": {
+        "console": {
+            "level": "DEBUG",
+            "class": "logging.StreamHandler",
+            "formatter": "standard"
+        },
+        "analysis_file_handler": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "standard",
+            "filename": "C:\\RevenueByState\\loggings\\analysis.log",
+            "mode": "a"
+        },
+        "etl_file_handler": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "standard",
+            "filename": "C:\\RevenueByState\\loggings\\etl.log",
+            "mode": "a"
+        },
+        "database_file_handler": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "formatter": "standard",
+            "filename": "C:\\RevenueByState\\loggings\\database.log",
+            "mode": "a"
+        }
+    },
+    "loggers": {
+        "etl_logger": {
+            "handlers": ["etl_file_handler", "console"],
+            "level": "DEBUG",
+            "propagate": false
+        },
+        "analysis_logger": {
+            "handlers": ["analysis_file_handler", "console"],
+            "level": "DEBUG",
+            "propagate": false
+        },
+        "database_logger": {
+            "handlers": ["database_file_handler", "console"],
+            "level": "DEBUG",
+            "propagate": false
+        }
+    }
+}
