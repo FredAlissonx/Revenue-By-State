@@ -18,8 +18,10 @@ class LoggerSetup:
     """
 
     _is_configured = False  # Class-level variable to track configuration
+    CONFIG_PATH = "C:\\RevenueByState\\loggings\\logging_config.json"
 
-    def config_logging(self, config_path: str = "logging_config.json") -> None:
+    @classmethod
+    def config_logging(self, config_path: str = CONFIG_PATH) -> None:
         """
         Configures the logging settings.
 
@@ -31,7 +33,7 @@ class LoggerSetup:
         config_path : str
             Path to the logging configuration JSON file.
         """
-        if not LoggerConfig._is_configured:
+        if not LoggerSetup._is_configured:
             log_dir = "C:\\RevenueByState\\loggings"
             os.makedirs(log_dir, exist_ok=True)
 
@@ -39,14 +41,14 @@ class LoggerSetup:
                 with open(config_path, 'r') as file:
                     config = json.load(file)
                 logging.config.dictConfig(config)
-                LoggerConfig._is_configured = True  # Mark as configured
+                LoggerSetup._is_configured = True  # Mark as configured
             except FileNotFoundError:
                 logging.basicConfig(level=logging.WARNING)
                 logging.warning(f"Logging configuration file not found: {config_path}")
             except json.JSONDecodeError as e:
                 logging.basicConfig(level=logging.WARNING)
                 logging.warning(f"Error decoding JSON logging configuration: {e}")
-
+    @classmethod
     def get_logger(self, logger_name: str) -> logging.Logger:
         """
         Returns a configured logger by name.
@@ -64,10 +66,11 @@ class LoggerSetup:
         logging.Logger
             The configured logger.
         """
-        if not LoggerConfig._is_configured:
+        if not LoggerSetup._is_configured:
             self.config_logging()
         return logging.getLogger(logger_name)
 
+    @classmethod
     def get_analysis_logger(self) -> logging.Logger:
         """
         Returns a logger for EDA tasks.
@@ -79,6 +82,7 @@ class LoggerSetup:
         """
         return self.get_logger(logger_name="analysis_logger")
 
+    @classmethod
     def get_etl_logger(self) -> logging.Logger:
         """
         Returns a logger for ETL tasks.
@@ -90,6 +94,7 @@ class LoggerSetup:
         """
         return self.get_logger(logger_name="etl_logger")
 
+    @classmethod
     def get_database_logger(self) -> logging.Logger:
         """
         Returns a logger for database tasks.
