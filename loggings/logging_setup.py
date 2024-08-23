@@ -4,7 +4,7 @@ import json
 import os
 
 
-class LoggerConfig:
+class LoggerSetup:
     """
     A class used to configure and provide loggers for ETL and analysis processes.
 
