@@ -29,7 +29,7 @@ class FileHandlerArrecadacaoEstado:
 
     def setup_driver(self):
         chrome_service = Service(ChromeDriverManager().install())
-        
+    
         self.driver = webdriver.Chrome(service=chrome_service, options=self.chrome_options)
         self.driver.implicitly_wait(10)
     
